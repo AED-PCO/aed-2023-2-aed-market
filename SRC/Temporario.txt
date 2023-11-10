@@ -1,0 +1,1 @@
+Esse arquivo server apenas para "preencher" o espaço, ele deve ser apagado quando o projeto for efetivamente iniciado.

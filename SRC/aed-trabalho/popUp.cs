@@ -10,17 +10,22 @@ using System.Windows.Forms;
 
 namespace aed_trabalho
 {
-    public partial class Form1 : Form
+    public partial class popUp : Form
     {
-        public Form1()
+        public popUp()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            popUp pop = new popUp();
-            pop.ShowDialog();
+
+            this.Close();
+        }
+
+        private void popUp_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

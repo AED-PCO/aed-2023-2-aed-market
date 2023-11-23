@@ -1,6 +1,6 @@
 ﻿namespace aed_trabalho
 {
-    partial class Form1
+    partial class popUp
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(250, 259);
+            this.button1.Location = new System.Drawing.Point(103, 227);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -41,14 +41,17 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form1
+            // popUp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(297, 316);
+            this.ControlBox = false;
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MinimizeBox = false;
+            this.Name = "popUp";
+            this.Text = "popUp";
+            this.Load += new System.EventHandler(this.popUp_Load);
             this.ResumeLayout(false);
 
         }

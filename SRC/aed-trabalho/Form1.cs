@@ -1,5 +1,7 @@
+using aed_trabalho;
 using System.Security.Cryptography.X509Certificates;
 using static aed_trabalho.Login;
+
 
 namespace cadastronovo
 {
@@ -41,14 +43,31 @@ namespace cadastronovo
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            voltarParaOLogin();
         }
+
+        private void voltarParaOLogin()
+        {
+            Thread t1;
+            this.Close();
+            t1 = new Thread(novaJanelaLogin);
+            t1.SetApartmentState(ApartmentState.STA);
+            t1.Start();
+        }
+
+        private void novaJanelaLogin()
+        {
+            Application.Run(new Login());
+        }
+
+
 
         public void button3_Click(object sender, EventArgs e)
         {
             //Adiciona na lista o novo usuario (so salva quando a janela for fechada)
             lista.adicionar(txtusuario.Text, txtsenha.Text);
-                MessageBox.Show($"Usuario: {txtusuario.Text} - Cadastrado");
+                MessageBox.Show($"Usuário -{txtusuario.Text}- cadastrado com sucesso");
+            voltarParaOLogin();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

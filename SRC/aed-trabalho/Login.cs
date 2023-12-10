@@ -24,12 +24,7 @@ namespace aed_trabalho
 
         private void BotaoCancelar_Click(object sender, EventArgs e)
         {
-            Thread t1;
             this.Close();
-            t1 = new Thread(abrirjanela);
-            t1.SetApartmentState(ApartmentState.STA);
-            t1.Start();
-
         }
 
         //Duas funções temporarias, depois fazer uma generica
@@ -44,7 +39,7 @@ namespace aed_trabalho
             Application.Run(new Menu());
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BotaoConfirmar_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario(EntradaUsuario.Text, EntradaSenha.Text);
 
@@ -65,6 +60,12 @@ namespace aed_trabalho
                         t1 = new Thread(Logar);
                         t1.SetApartmentState(ApartmentState.STA);
                         t1.Start();
+
+                        StreamWriter gravadorContas = new StreamWriter("acessoRapido.txt");
+
+                        gravadorContas.WriteLine($"{dadosDoUsuario[0]};{dadosDoUsuario[1]};{dadosDoUsuario[0]}_estoque.txt");
+                        gravadorContas.Close();
+
                         break;
 
                     }
@@ -92,6 +93,15 @@ namespace aed_trabalho
                 senha = EntradaSenha;
             }
 
+        }
+
+        private void Cadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Thread t1;
+            this.Close();
+            t1 = new Thread(abrirjanela);
+            t1.SetApartmentState(ApartmentState.STA);
+            t1.Start();
         }
     }
 }

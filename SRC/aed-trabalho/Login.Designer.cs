@@ -31,20 +31,21 @@
             BotaoCancelar = new Button();
             EntradaUsuario = new TextBox();
             EntradaSenha = new TextBox();
-            button1 = new Button();
+            BotaoConfirmar = new Button();
             label1 = new Label();
             label2 = new Label();
             TextoPaginaLogin = new Label();
+            Cadastrar = new LinkLabel();
             SuspendLayout();
             // 
             // BotaoCancelar
             // 
             BotaoCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            BotaoCancelar.Location = new Point(46, 227);
+            BotaoCancelar.Location = new Point(62, 227);
             BotaoCancelar.Name = "BotaoCancelar";
             BotaoCancelar.Size = new Size(71, 22);
             BotaoCancelar.TabIndex = 0;
-            BotaoCancelar.Text = "Cadastrar";
+            BotaoCancelar.Text = "Sair";
             BotaoCancelar.UseVisualStyleBackColor = true;
             BotaoCancelar.Click += BotaoCancelar_Click;
             // 
@@ -54,7 +55,7 @@
             EntradaUsuario.Location = new Point(83, 87);
             EntradaUsuario.MaximumSize = new Size(200, 23);
             EntradaUsuario.Name = "EntradaUsuario";
-            EntradaUsuario.Size = new Size(100, 23);
+            EntradaUsuario.Size = new Size(116, 23);
             EntradaUsuario.TabIndex = 1;
             // 
             // EntradaSenha
@@ -63,19 +64,19 @@
             EntradaSenha.Location = new Point(83, 154);
             EntradaSenha.MaximumSize = new Size(200, 23);
             EntradaSenha.Name = "EntradaSenha";
-            EntradaSenha.Size = new Size(100, 23);
+            EntradaSenha.Size = new Size(116, 23);
             EntradaSenha.TabIndex = 2;
             // 
-            // button1
+            // BotaoConfirmar
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button1.Location = new Point(149, 227);
-            button1.Name = "button1";
-            button1.Size = new Size(71, 22);
-            button1.TabIndex = 3;
-            button1.Text = "Confirmar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            BotaoConfirmar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            BotaoConfirmar.Location = new Point(165, 227);
+            BotaoConfirmar.Name = "BotaoConfirmar";
+            BotaoConfirmar.Size = new Size(71, 22);
+            BotaoConfirmar.TabIndex = 3;
+            BotaoConfirmar.Text = "Confirmar";
+            BotaoConfirmar.UseVisualStyleBackColor = true;
+            BotaoConfirmar.Click += BotaoConfirmar_Click;
             // 
             // label1
             // 
@@ -100,19 +101,31 @@
             TextoPaginaLogin.AutoSize = true;
             TextoPaginaLogin.Location = new Point(27, 26);
             TextoPaginaLogin.Name = "TextoPaginaLogin";
-            TextoPaginaLogin.Size = new Size(109, 15);
+            TextoPaginaLogin.Size = new Size(142, 15);
             TextoPaginaLogin.TabIndex = 6;
-            TextoPaginaLogin.Text = "AED Market: Entrar ";
+            TextoPaginaLogin.Text = "Insira seus dados de login";
+            // 
+            // Cadastrar
+            // 
+            Cadastrar.AutoSize = true;
+            Cadastrar.Location = new Point(83, 194);
+            Cadastrar.Name = "Cadastrar";
+            Cadastrar.Size = new Size(73, 15);
+            Cadastrar.TabIndex = 7;
+            Cadastrar.TabStop = true;
+            Cadastrar.Text = "Cadastrar-se";
+            Cadastrar.LinkClicked += Cadastrar_LinkClicked;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(263, 261);
+            ClientSize = new Size(279, 261);
+            Controls.Add(Cadastrar);
             Controls.Add(TextoPaginaLogin);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(BotaoConfirmar);
             Controls.Add(EntradaSenha);
             Controls.Add(EntradaUsuario);
             Controls.Add(BotaoCancelar);
@@ -130,9 +143,10 @@
         private Button BotaoCancelar;
         private TextBox EntradaUsuario;
         private TextBox EntradaSenha;
-        private Button button1;
+        private Button BotaoConfirmar;
         private Label label1;
         private Label label2;
         private Label TextoPaginaLogin;
+        private LinkLabel Cadastrar;
     }
 }

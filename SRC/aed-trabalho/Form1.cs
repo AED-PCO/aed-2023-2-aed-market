@@ -35,30 +35,59 @@ namespace cadastronovo
         public void button3_Click(object sender, EventArgs e)
         {
 
-            Usuario usuario = new Usuario();
+            Usuario usuario = new Usuario(txtusuario.Text, txtsenha.Text);
 
-
-            string usuarionome = txtusuario.Text;
-            string senha1 = txtsenha.Text;
-
-
-            usuario.username = usuarionome;
-            usuario.senha = senha1;
-
-
-
-            using (StreamWriter sw = new StreamWriter("arquivo.txt", true))
+            using (StreamWriter sw = new StreamWriter("contas.txt", true))
             {
-                sw.WriteLine($"{usuario.username}, {usuario.senha}");
+                sw.WriteLine($"{usuario.username};{usuario.senha};{usuario.username}_estoque.txt");
             }
 
         }
     }
 }
 
+
+//Mudança geral na classe em processo, ela vai ser utilizada em quase todas as janelas, por isso esta sendo modificada - Yago
+public class listaUsuarios
+{
+    public Usuario ultimo;
+
+    public listaUsuarios()
+    {
+        ultimo = null;
+    }
+
+    public void adicionar(string EntradaUsername, string EntradaSenha)
+    {
+        Usuario novoUsuario = new Usuario(EntradaUsername, EntradaSenha);
+
+        if(ultimo == null)
+        {
+            ultimo = novoUsuario;
+        }
+        else
+        {
+            ultimo.proximo = novoUsuario;
+            ultimo = novoUsuario;
+        }
+    }
+
+    public void salvarUsuarios()
+    {
+
+    }
+}
+
 public class Usuario
 {
-    public string username { get; set; }
-    public string senha { get; set; }
+    public string username;
+    public string senha;
 
+    public Usuario proximo = null;
+
+    public Usuario(string EntradaUsername, string EntradaSenha)
+    {
+        username = EntradaUsername;
+        senha = EntradaSenha;
+    }
 }

@@ -75,6 +75,7 @@
             button1.TabIndex = 3;
             button1.Text = "Confirmar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
@@ -120,7 +121,6 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AED Market: Entrar ";
-            ClientSizeChanged += Login_ClientSizeChanged;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp3
+﻿namespace aed_trabalho
 {
     partial class Menu
     {
@@ -188,4 +188,3 @@
         private System.Windows.Forms.TextBox codigoremover;
     }
 }
-

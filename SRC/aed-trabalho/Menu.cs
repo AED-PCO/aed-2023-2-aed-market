@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp3
+namespace aed_trabalho
 {
     public partial class Menu : Form
     {
@@ -17,7 +16,6 @@ namespace WindowsFormsApp3
         {
             InitializeComponent();
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -36,7 +34,7 @@ namespace WindowsFormsApp3
                 sw.WriteLine($"{Produto.nome},{Produto.preco},{Produto.codigo}");
                 sw.Close();
             }
-           
+
 
         }
 
@@ -106,11 +104,10 @@ namespace WindowsFormsApp3
 
         }
     }
-    public class produto {
+    public class produto
+    {
         public string nome;
         public string preco;
         public string codigo;
     }
-    
 }
-

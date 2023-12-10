@@ -1,1 +1,0 @@
-MercadoSeuJocas;321;MercadoSeuJocas_estoque.txt

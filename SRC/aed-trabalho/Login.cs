@@ -46,9 +46,7 @@ namespace aed_trabalho
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario();
-            usuario.username = EntradaUsuario.Text;
-            usuario.senha = EntradaSenha.Text;
+            Usuario usuario = new Usuario(EntradaUsuario.Text, EntradaSenha.Text);
 
             if (File.Exists("contas.txt"))
             {
@@ -83,8 +81,16 @@ namespace aed_trabalho
 
         public class Usuario
         {
-            public string username { get; set; }
-            public string senha { get; set; }
+            public string username;
+            public string senha;
+
+            public Usuario proximo = null;
+
+            public Usuario(string EntradaUsername, string EntradaSenha)
+            {
+                username = EntradaUsername;
+                senha = EntradaSenha;
+            }
 
         }
     }

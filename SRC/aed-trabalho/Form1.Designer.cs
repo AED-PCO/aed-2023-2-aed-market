@@ -133,6 +133,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro";
+            FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

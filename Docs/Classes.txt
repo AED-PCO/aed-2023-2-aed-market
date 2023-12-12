@@ -1,7 +1,0 @@
-Adicionar mais detalhes das classes para facilitar a compreensão geral.
-
-Produtos
-
-Estoque
-
-Usuario

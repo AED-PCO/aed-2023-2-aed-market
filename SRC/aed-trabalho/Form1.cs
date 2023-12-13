@@ -1,6 +1,7 @@
 using aed_trabalho;
 using System.Security.Cryptography.X509Certificates;
 using static aed_trabalho.Login;
+using System.Text;
 
 
 namespace cadastronovo
@@ -16,7 +17,7 @@ namespace cadastronovo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Se n�o existir o arquivo quando a pagina carregar ele vai ser criado
+            //Se não existir o arquivo quando a pagina carregar ele vai ser criado
             if (!File.Exists("contas.txt"))
             {
                 using (StreamWriter sw = new StreamWriter("contas.txt", true))
@@ -50,14 +51,15 @@ namespace cadastronovo
         {
             Thread t1;
             this.Close();
-            t1 = new Thread(novaJanelaLogin);
+            t1 = new Thread(novomenu);
             t1.SetApartmentState(ApartmentState.STA);
             t1.Start();
         }
 
-        private void novaJanelaLogin()
+        private void novomenu()
         {
-            Application.Run(new Login());
+            Menu menuForm = new Menu();
+            menuForm.ShowDialog();
         }
 
 
@@ -66,8 +68,9 @@ namespace cadastronovo
         {
             //Adiciona na lista o novo usuario (so salva quando a janela for fechada)
             lista.adicionar(txtusuario.Text, txtsenha.Text);
-                MessageBox.Show($"Usu�rio -{txtusuario.Text}- cadastrado com sucesso");
-            voltarParaOLogin();
+                MessageBox.Show($"Usuário -{txtusuario.Text}- cadastrado com sucesso");
+            novomenu();
+            //Retorna o retorno de uma função
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -79,7 +82,7 @@ namespace cadastronovo
 }
 
 
-//Mudan�a geral na classe em processo, ela vai ser utilizada em quase todas as janelas, por isso esta sendo modificada - Yago
+//Mudança geral na classe em processo, ela vai ser utilizada em quase todas as janelas, por isso esta sendo modificada - Yago
 public class listaUsuarios
 {
     public int quantidadeSalva;
@@ -144,6 +147,9 @@ public class listaUsuarios
         gravadorContas.Close();
     }
 
+   
+
+
 }
 
 public class Usuario
@@ -156,6 +162,21 @@ public class Usuario
     public Usuario(string EntradaUsername, string EntradaSenha)
     {
         username = EntradaUsername;
-        senha = EntradaSenha;
+        senha = Criptografa(EntradaSenha);
+
+    }
+    public static string Criptografa(string senha)
+    {
+        int deslocamento = 3; // Valor de deslocamento da cifra de César
+        StringBuilder senhaCriptografada = new StringBuilder(senha.Length); //Serve para manipular a string senha mais facilmente
+
+        for (int i = 0; i < senha.Length; i++)
+        {
+            int caractereCriptografado = senha[i] + deslocamento;
+            senhaCriptografada.Append((char)caractereCriptografado);
+        } //For colocando cada dígito +3 pra frente
+
+        return senhaCriptografada.ToString();
     }
 }
+

@@ -134,6 +134,7 @@ public class listaUsuarios
     }
 
     //Le todos os usuario salvos no arquivo
+
     public void lerUsuarios()
     {
         StreamReader estoqueReader = new StreamReader("contas.txt");

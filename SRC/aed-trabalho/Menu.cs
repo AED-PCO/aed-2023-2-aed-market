@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -165,7 +166,9 @@ namespace aed_trabalho
 
         private void Menu_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             produtos.Ordenar(caminhoDoArquivo[2]);
+            
             //produtos.Salvar(caminhoDoArquivo[2]);
         }
 
@@ -176,13 +179,30 @@ namespace aed_trabalho
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            produto codigoTextBox = produtos.EncontrarProduto(int.Parse(textBox3.Text));
-            if (codigoTextBox != null) 
-            { 
-                codigoTextBox.codigo = 
-            }
+            produto aux = produtos.EncontrarProduto(int.Parse(textBox3.Text));
 
-            MessageBox.Show($"Não foi possível encontrar o código {codigoTextBox}. Tente novamente.");
+            if (aux != null)
+            {
+                produtos.SalvarExcluindo(caminhoDoArquivo[2], int.Parse(textBox3.Text));
+                recarregarJanela();
+            }
+            else
+            {
+                MessageBox.Show("Produto não encontrado");
+            }
+        }
+
+        public void recarregarJanela()
+        {
+            Thread t1;
+            this.Close();
+            t1 = new Thread(carregar);
+            t1.SetApartmentState(ApartmentState.STA);
+            t1.Start();
+        }
+        public void carregar()
+        {
+            Application.Run(new Menu());
         }
 
         private void RemoverProduto_Click(object sender, EventArgs e)
@@ -287,6 +307,28 @@ namespace aed_trabalho
             while (atual != null)
             {
                 estoqueG.WriteLine($"{atual.codigo};{atual.nome};{atual.preco};{atual.quantidade}");
+                atual = atual.proximo;
+            }
+
+            estoqueG.Close();
+
+        }
+
+        public void SalvarExcluindo(string caminhoDoArquivo, int codigo)
+        {
+
+            produto atual = primeiro;
+
+            StreamWriter estoqueG = new StreamWriter(caminhoDoArquivo);
+
+            estoqueG.WriteLine((quantidadeEmEstoque - 1).ToString());
+
+            while (atual != null)
+            {
+                if (codigo != atual.codigo)
+                {
+                    estoqueG.WriteLine($"{atual.codigo};{atual.nome};{atual.preco};{atual.quantidade}");
+                }
                 atual = atual.proximo;
             }
 

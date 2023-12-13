@@ -168,6 +168,27 @@ namespace aed_trabalho
             produtos.Ordenar(caminhoDoArquivo[2]);
             //produtos.Salvar(caminhoDoArquivo[2]);
         }
+
+        private void TextoAviso_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            produto codigoTextBox = produtos.EncontrarProduto(int.Parse(textBox3.Text));
+            if (codigoTextBox != null) 
+            { 
+                codigoTextBox.codigo = 
+            }
+
+            MessageBox.Show($"Não foi possível encontrar o código {codigoTextBox}. Tente novamente.");
+        }
+
+        private void RemoverProduto_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     public class produto
     {

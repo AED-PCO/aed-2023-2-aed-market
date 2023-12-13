@@ -90,7 +90,21 @@ namespace aed_trabalho
             public Usuario(string EntradaUsername, string EntradaSenha)
             {
                 username = EntradaUsername;
-                senha = EntradaSenha;
+                senha = Criptografa(EntradaSenha);
+            }
+
+            public static string Criptografa(string senha)
+            {
+                int deslocamento = 3; // Valor de deslocamento da cifra de César
+                StringBuilder senhaCriptografada = new StringBuilder(senha.Length); //Serve para manipular a string senha mais facilmente
+
+                for (int i = 0; i < senha.Length; i++)
+                {
+                    int caractereCriptografado = senha[i] + deslocamento;
+                    senhaCriptografada.Append((char)caractereCriptografado);
+                } //For colocando cada dígito +3 pra frente
+
+                return senhaCriptografada.ToString();
             }
 
         }

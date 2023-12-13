@@ -1,1 +1,0 @@
-yago;456;yago_estoque.txt

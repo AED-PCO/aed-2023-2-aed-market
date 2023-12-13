@@ -1,9 +1,0 @@
-8
-yui;o{;yui_estoque.txt
-yago;789;yago_estoque.txt
-teste23;89;teste23_estoque.txt
-pokemon;hgrr;pokemon_estoque.txt
-yago;:;<;yago_estoque.txt
-das;789;das_estoque.txt
-davi444;789;davi444_estoque.txt
-ddsssss;777;ddsssss_estoque.txt

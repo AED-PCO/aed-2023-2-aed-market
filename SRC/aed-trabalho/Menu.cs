@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -38,9 +39,17 @@ namespace aed_trabalho
                 MessageBox.Show("Produto cadastrado");
             }
             */
-
-            produtos.Adicionar(int.Parse(codigoproduto.Text), nomeproduto.Text, int.Parse(precoproduto.Text), int.Parse(codigoremover.Text));
-            produtos.AtualizarTabela(ListaProdutos);
+            produto aux = produtos.EncontrarProduto(int.Parse(codigoproduto.Text));
+            if (aux == null)
+            {
+                produtos.Adicionar(int.Parse(codigoproduto.Text), nomeproduto.Text, int.Parse(precoproduto.Text), int.Parse(codigoremover.Text));
+                produtos.Ordenar(caminhoDoArquivo[2]);
+                produtos.AtualizarTabela(ListaProdutos);
+            }
+            else
+            {
+                MessageBox.Show("Codigo já cadastrado");
+            }
 
             nomeproduto.Text = "";
             codigoproduto.Text = "";
@@ -156,7 +165,8 @@ namespace aed_trabalho
 
         private void Menu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            produtos.Salvar(caminhoDoArquivo[2]);
+            produtos.Ordenar(caminhoDoArquivo[2]);
+            //produtos.Salvar(caminhoDoArquivo[2]);
         }
     }
     public class produto
@@ -301,6 +311,49 @@ namespace aed_trabalho
                 atual = atual.proximo;
             }
 
+        }
+
+        public void Ordenar(string caminhoDoArquivo)
+        {
+            produto atual = primeiro;
+
+            string[] produtosSalvos = new string[quantidadeEmEstoque];
+            int contador = 0;
+
+            while (atual != null)
+            {
+                produtosSalvos[contador] = $"{atual.codigo};{atual.nome};{atual.preco};{atual.quantidade}";
+                contador++;
+                atual = atual.proximo;
+            }
+
+            for(int i = 0; i < produtosSalvos.Length; i++)
+            {
+                for (int j = i+1; j < produtosSalvos.Length-1; j++)
+                {
+                    string[] aux1 = produtosSalvos[i].Split(";");
+                    string[] aux2 = produtosSalvos[j].Split(";");
+
+
+                    if (int.Parse(aux1[0]) > int.Parse(aux2[0]))
+                    {
+                        string auxSwap = produtosSalvos[i];
+                        produtosSalvos[i] = produtosSalvos[j];
+                        produtosSalvos[j] = auxSwap;
+                    }
+                }
+            }
+
+            StreamWriter estoqueG = new StreamWriter(caminhoDoArquivo);
+
+            estoqueG.WriteLine(quantidadeEmEstoque.ToString());
+
+            for (int i = 0;i < produtosSalvos.Length; i++)
+            {
+                estoqueG.WriteLine(produtosSalvos[i]);
+            }
+
+            estoqueG.Close();
         }
     }
 }

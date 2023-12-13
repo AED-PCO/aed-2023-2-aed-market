@@ -51,6 +51,21 @@ namespace cadastronovo
         {
             Thread t1;
             this.Close();
+            t1 = new Thread(voltarLogin);
+            t1.SetApartmentState(ApartmentState.STA);
+            t1.Start();
+        }
+
+        private void voltarLogin()
+        {
+
+            Application.Run(new Login());
+        }
+
+        private void autoLogar()
+        {
+            Thread t1;
+            this.Close();
             t1 = new Thread(novomenu);
             t1.SetApartmentState(ApartmentState.STA);
             t1.Start();
@@ -58,8 +73,7 @@ namespace cadastronovo
 
         private void novomenu()
         {
-            Menu menuForm = new Menu();
-            menuForm.ShowDialog();
+            Application.Run(new Menu());
         }
 
 
@@ -68,8 +82,13 @@ namespace cadastronovo
         {
             //Adiciona na lista o novo usuario (so salva quando a janela for fechada)
             lista.adicionar(txtusuario.Text, txtsenha.Text);
-                MessageBox.Show($"Usuário -{txtusuario.Text}- cadastrado com sucesso");
-            novomenu();
+            //MessageBox.Show($"Usuário -{txtusuario.Text}- cadastrado com sucesso");
+            StreamWriter gravadorContas = new StreamWriter("acessoRapido.txt");
+
+            gravadorContas.WriteLine($"{txtusuario.Text};{lista.ultimo.senha};{txtusuario.Text}_estoque.txt");
+            gravadorContas.Close();
+
+            autoLogar();
             //Retorna o retorno de uma função
         }
 

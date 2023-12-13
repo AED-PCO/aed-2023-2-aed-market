@@ -1,3 +1,5 @@
-2
-1;4;1_estoque.txt
-2;5;2_estoque.txt
+4
+1;:;1_estoque.txt
+2;;;2_estoque.txt
+dsdad;gj;dsdad_estoque.txt
+weqweq;hztht;weqweq_estoque.txt

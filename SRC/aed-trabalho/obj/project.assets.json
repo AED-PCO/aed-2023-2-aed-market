@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Yago\\.nuget\\packages\\": {}
+    "C:\\Users\\danie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Yago\\Desktop\\Projetos Github\\aed-2023-2-aed-market\\SRC\\aed-trabalho\\aed-trabalho.csproj",
+      "projectUniqueName": "C:\\Users\\danie\\Desktop\\aedtrabalho\\aed-2023-2-aed-market\\SRC\\aed-trabalho\\aed-trabalho.csproj",
       "projectName": "aed-trabalho",
-      "projectPath": "C:\\Users\\Yago\\Desktop\\Projetos Github\\aed-2023-2-aed-market\\SRC\\aed-trabalho\\aed-trabalho.csproj",
-      "packagesPath": "C:\\Users\\Yago\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Yago\\Desktop\\Projetos Github\\aed-2023-2-aed-market\\SRC\\aed-trabalho\\obj\\",
+      "projectPath": "C:\\Users\\danie\\Desktop\\aedtrabalho\\aed-2023-2-aed-market\\SRC\\aed-trabalho\\aed-trabalho.csproj",
+      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\danie\\Desktop\\aedtrabalho\\aed-2023-2-aed-market\\SRC\\aed-trabalho\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Yago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

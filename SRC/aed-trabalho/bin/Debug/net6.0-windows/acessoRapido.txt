@@ -1,1 +1,1 @@
-pokemon;ball;pokemon_estoque.txt
+yago;456;yago_estoque.txt

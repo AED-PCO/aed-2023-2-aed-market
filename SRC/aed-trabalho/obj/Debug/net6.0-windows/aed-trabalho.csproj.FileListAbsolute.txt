@@ -97,3 +97,17 @@ C:\Users\danie\Desktop\aedtrabalho\aed-2023-2-aed-market\SRC\aed-trabalho\obj\De
 C:\Users\danie\Desktop\aedtrabalho\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed-trabalho.pdb
 C:\Users\danie\Desktop\aedtrabalho\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed-trabalho.genruntimeconfig.cache
 C:\Users\danie\Desktop\aedtrabalho\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\ref\aed-trabalho.dll
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\cadastronovo.Form1.resources
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed_trabalho.Login.resources
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed_trabalho.Menu.resources
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed_trabalho.popUp.resources
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed_trabalho.Properties.Resources.resources
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed_trabalho.TelaCadastro.resources
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed-trabalho.csproj.GenerateResource.cache
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed-trabalho.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed-trabalho.AssemblyInfoInputs.cache
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed-trabalho.AssemblyInfo.cs
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed-trabalho.csproj.CoreCompileInputs.cache
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed-trabalho.dll
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\refint\aed-trabalho.dll
+C:\Users\gusta\source\repos\AED-PCO\aed-2023-2-aed-market\SRC\aed-trabalho\obj\Debug\net6.0-windows\aed-trabalho.pdb

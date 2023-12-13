@@ -347,9 +347,10 @@
             TextoAviso.AutoSize = true;
             TextoAviso.Location = new Point(7, 58);
             TextoAviso.Name = "TextoAviso";
-            TextoAviso.Size = new Size(205, 15);
+            TextoAviso.Size = new Size(208, 15);
             TextoAviso.TabIndex = 34;
-            TextoAviso.Text = "O processo de remover é permanente";
+            TextoAviso.Text = "O processo de remover é permanente.";
+            TextoAviso.Click += TextoAviso_Click;
             // 
             // RemoverProduto
             // 
@@ -360,6 +361,7 @@
             RemoverProduto.TabIndex = 33;
             RemoverProduto.Text = "Remover";
             RemoverProduto.UseVisualStyleBackColor = true;
+            RemoverProduto.Click += RemoverProduto_Click;
             // 
             // button4
             // 
@@ -374,7 +376,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(5, 120);
+            label11.Location = new Point(13, 120);
             label11.Margin = new Padding(2, 0, 2, 0);
             label11.Name = "label11";
             label11.Size = new Size(49, 15);
@@ -383,11 +385,12 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(5, 137);
+            textBox3.Location = new Point(13, 137);
             textBox3.Margin = new Padding(2);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(109, 23);
             textBox3.TabIndex = 31;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // ListaProdutos
             // 

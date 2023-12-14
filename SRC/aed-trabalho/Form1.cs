@@ -80,6 +80,13 @@ namespace cadastronovo
 
         public void button3_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrEmpty(txtusuario.Text) || string.IsNullOrEmpty(txtsenha.Text))
+            {
+                MessageBox.Show("Preencha todas as informações antes de cadastrar um usuário.");
+                return;
+            }
+
             //Adiciona na lista o novo usuario (so salva quando a janela for fechada)
             lista.adicionar(txtusuario.Text, txtsenha.Text);
             //MessageBox.Show($"Usuário -{txtusuario.Text}- cadastrado com sucesso");

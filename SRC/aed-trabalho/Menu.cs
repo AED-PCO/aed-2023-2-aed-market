@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,7 +19,7 @@ namespace aed_trabalho
     {
         estoque produtos = new estoque();
         string[] caminhoDoArquivo;
-
+        
         public Menu()
         {
             InitializeComponent();
@@ -168,7 +169,7 @@ namespace aed_trabalho
         {
 
             produtos.Ordenar(caminhoDoArquivo[2]);
-            
+
             //produtos.Salvar(caminhoDoArquivo[2]);
         }
 
@@ -209,7 +210,50 @@ namespace aed_trabalho
         {
 
         }
+
+        private void ConfirmarEdicao_Click(object sender, EventArgs e)
+        {
+            string nome = NomeEdicao.Text;
+            string cod = CodigoEdicao.Text;
+            string preco = PrecoEdicao.Text;
+            string quant = QuantidadeEdicao.Text;
+
+        
+           
+
+
+            List<string> lines = File.ReadAllLines(caminhoDoArquivo[2]).ToList();
+
+
+            string linhaParaEditar = lines.FirstOrDefault(l => l.StartsWith($"{cod};"));
+
+            if (linhaParaEditar != null)
+            {
+
+                string[] dadosProduto = linhaParaEditar.Split(';');
+                dadosProduto[1] = nome;
+                dadosProduto[2] = preco;
+                dadosProduto[3] = quant;
+
+
+                string novaLinha = string.Join(";", dadosProduto);
+
+
+                lines[lines.IndexOf(linhaParaEditar)] = novaLinha;
+
+
+                File.WriteAllLines(caminhoDoArquivo[2], lines);
+
+                MessageBox.Show("Produto editado com sucesso!");
+            }
+            else
+            {
+                MessageBox.Show($"Produto com código {cod} não encontrado!");
+            }
+        }
+
     }
+}
     public class produto
     {
         public produto proximo;
@@ -390,9 +434,9 @@ namespace aed_trabalho
                 atual = atual.proximo;
             }
 
-            for(int i = 0; i < produtosSalvos.Length; i++)
+            for (int i = 0; i < produtosSalvos.Length; i++)
             {
-                for (int j = i+1; j < produtosSalvos.Length-1; j++)
+                for (int j = i + 1; j < produtosSalvos.Length - 1; j++)
                 {
                     string[] aux1 = produtosSalvos[i].Split(";");
                     string[] aux2 = produtosSalvos[j].Split(";");
@@ -411,7 +455,7 @@ namespace aed_trabalho
 
             estoqueG.WriteLine(quantidadeEmEstoque.ToString());
 
-            for (int i = 0;i < produtosSalvos.Length; i++)
+            for (int i = 0; i < produtosSalvos.Length; i++)
             {
                 estoqueG.WriteLine(produtosSalvos[i]);
             }
@@ -419,4 +463,4 @@ namespace aed_trabalho
             estoqueG.Close();
         }
     }
-}
+

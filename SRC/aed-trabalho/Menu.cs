@@ -215,43 +215,20 @@ namespace aed_trabalho
 
         private void ConfirmarEdicao_Click(object sender, EventArgs e)
         {
-            string nome = NomeEdicao.Text;
-            string cod = CodigoEdicao.Text;
-            string preco = PrecoEdicao.Text;
-            string quant = QuantidadeEdicao.Text;
-
-
-
-
-
-            List<string> lines = File.ReadAllLines(caminhoDoArquivo[2]).ToList();
-
-
-            string linhaParaEditar = lines.FirstOrDefault(l => l.StartsWith($"{cod};"));
-
-            if (linhaParaEditar != null)
+           
+            
+                produto aux = produtos.EncontrarProduto(int.Parse(CodigoEdicao.Text));
+            if (aux != null)
             {
+                aux.nome = NomeEdicao.Text;
+                aux.preco = double.Parse(PrecoEdicao.Text);
+                aux.quantidade = int.Parse(QuantidadeEdicao.Text);
 
-                string[] dadosProduto = linhaParaEditar.Split(';');
-                dadosProduto[1] = nome;
-                dadosProduto[2] = preco;
-                dadosProduto[3] = quant;
-
-
-                string novaLinha = string.Join(";", dadosProduto);
-
-
-                lines[lines.IndexOf(linhaParaEditar)] = novaLinha;
-
-
-                File.WriteAllLines(caminhoDoArquivo[2], lines);
-
-                MessageBox.Show("Produto editado com sucesso!");
             }
-            else
-            {
-                MessageBox.Show($"Produto com código {cod} não encontrado!");
-            }
+              produtos.AtualizarTabela(ListaProdutos);
+
+
+
         }
 
     }

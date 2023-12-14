@@ -47,7 +47,7 @@ namespace aed_trabalho
             {
                 StreamReader estoqueReader = new StreamReader("contas.txt");
                 string linha = estoqueReader.ReadLine();
-                string[] dadosDoUsuario;
+                string[] dadosDoUsuario = new string[2];
 
                 while (linha != null)
                 {

@@ -1,5 +1,7 @@
-4
+6
+1;@;1_estoque.txt
 1;:;1_estoque.txt
+dsdad;mp;dsdad_estoque.txt
+weqweq;nznz;weqweq_estoque.txt
+5;;;5_estoque.txt
 1;4;1_estoque.txt
-dsdad;gj;dsdad_estoque.txt
-weqweq;hztht;weqweq_estoque.txt

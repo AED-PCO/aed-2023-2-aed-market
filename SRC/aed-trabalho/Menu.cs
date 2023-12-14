@@ -19,7 +19,7 @@ namespace aed_trabalho
     {
         estoque produtos = new estoque();
         string[] caminhoDoArquivo;
-        
+
         public Menu()
         {
             InitializeComponent();
@@ -180,17 +180,7 @@ namespace aed_trabalho
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            produto aux = produtos.EncontrarProduto(int.Parse(textBox3.Text));
 
-            if (aux != null)
-            {
-                produtos.SalvarExcluindo(caminhoDoArquivo[2], int.Parse(textBox3.Text));
-                recarregarJanela();
-            }
-            else
-            {
-                MessageBox.Show("Produto não encontrado");
-            }
         }
 
         public void recarregarJanela()
@@ -208,7 +198,19 @@ namespace aed_trabalho
 
         private void RemoverProduto_Click(object sender, EventArgs e)
         {
+            produto aux = produtos.EncontrarProduto(int.Parse(textBox3.Text));
 
+            if (aux != null)
+            {
+                produtos.Remover(aux);
+                //produtos.SalvarExcluindo(caminhoDoArquivo[2], int.Parse(textBox3.Text));
+                //recarregarJanela();
+                produtos.AtualizarTabela(ListaProdutos);
+            }
+            else
+            {
+                MessageBox.Show("Produto não encontrado");
+            }
         }
 
         private void ConfirmarEdicao_Click(object sender, EventArgs e)
@@ -218,8 +220,8 @@ namespace aed_trabalho
             string preco = PrecoEdicao.Text;
             string quant = QuantidadeEdicao.Text;
 
-        
-           
+
+
 
 
             List<string> lines = File.ReadAllLines(caminhoDoArquivo[2]).ToList();
@@ -254,213 +256,214 @@ namespace aed_trabalho
 
     }
 }
-    public class produto
+public class produto
+{
+    public produto proximo;
+    public produto anterior;
+
+    public int codigo;
+    public string nome;
+    public double preco;
+    public int quantidade;
+
+    public produto(int codigoInput, string nomeInput, double precoInput, int quantidadeInput)
     {
-        public produto proximo;
-        public produto anterior;
+        anterior = null;
+        proximo = null;
 
-        public int codigo;
-        public string nome;
-        public double preco;
-        public int quantidade;
+        codigo = codigoInput;
+        nome = nomeInput;
+        preco = precoInput;
+        quantidade = quantidadeInput;
+    }
+}
 
-        public produto(int codigoInput, string nomeInput, double precoInput, int quantidadeInput)
-        {
-            anterior = null;
-            proximo = null;
+public class estoque
+{
+    public produto primeiro;
+    public produto ultimo;
 
-            codigo = codigoInput;
-            nome = nomeInput;
-            preco = precoInput;
-            quantidade = quantidadeInput;
-        }
+    public int quantidadeEmEstoque;
+
+    public estoque()
+    {
+        primeiro = null;
+        ultimo = null;
+        quantidadeEmEstoque = 0;
     }
 
-    public class estoque
+    public void Adicionar(int codigoInput, string nomeInput, double precoInput, int quantidadeInput)
     {
-        public produto primeiro;
-        public produto ultimo;
+        produto novoProduto = new produto(codigoInput, nomeInput, precoInput, quantidadeInput);
 
-        public int quantidadeEmEstoque;
-
-        public estoque()
+        if (ultimo == null)
         {
-            primeiro = null;
-            ultimo = null;
-            quantidadeEmEstoque = 0;
+            primeiro = novoProduto;
+            ultimo = novoProduto;
         }
-
-        public void Adicionar(int codigoInput, string nomeInput, double precoInput, int quantidadeInput)
+        else
         {
-            produto novoProduto = new produto(codigoInput, nomeInput, precoInput, quantidadeInput);
+            novoProduto.anterior = ultimo;
+            ultimo.proximo = novoProduto;
+            ultimo = novoProduto;
+        }
+        quantidadeEmEstoque++;
+    }
 
-            if (ultimo == null)
+    public void Remover(produto produtoASerRemovido)
+    {
+        produto aux = produtoASerRemovido;
+
+        produto auxProximo = produtoASerRemovido.proximo;
+        produto auxAnterior = produtoASerRemovido.anterior;
+
+        auxAnterior.proximo = auxProximo;
+        auxProximo.anterior = auxAnterior;
+        /*
+        aux.anterior = null;
+        aux.proximo = null;
+        
+        quantidadeEmEstoque--;
+        */
+    }
+
+    public produto EncontrarProduto(int codigo)
+    {
+        produto atual = primeiro;
+
+        while (atual != null)
+        {
+            if (atual.codigo == codigo)
             {
-                primeiro = novoProduto;
-                ultimo = novoProduto;
+                return atual;
             }
-            else
-            {
-                novoProduto.anterior = ultimo;
-                ultimo.proximo = novoProduto;
-                ultimo = novoProduto;
-            }
-            quantidadeEmEstoque++;
+            atual = atual.proximo;
+        }
+        return null;
+    }
+
+    public void Salvar(string caminhoDoArquivo)
+    {
+
+        produto atual = primeiro;
+
+        StreamWriter estoqueG = new StreamWriter(caminhoDoArquivo);
+
+        estoqueG.WriteLine(quantidadeEmEstoque.ToString());
+
+        while (atual != null)
+        {
+            estoqueG.WriteLine($"{atual.codigo};{atual.nome};{atual.preco};{atual.quantidade}");
+            atual = atual.proximo;
         }
 
-        public void Remover(produto produtoASerRemovido)
+        estoqueG.Close();
+
+    }
+
+    public void SalvarExcluindo(string caminhoDoArquivo, int codigo)
+    {
+
+        produto atual = primeiro;
+
+        StreamWriter estoqueG = new StreamWriter(caminhoDoArquivo);
+
+        estoqueG.WriteLine((quantidadeEmEstoque - 1).ToString());
+
+        while (atual != null)
         {
-            produto aux = produtoASerRemovido;
-
-            produto auxProximo = produtoASerRemovido.proximo;
-            produto auxAnterior = produtoASerRemovido.anterior;
-
-            auxAnterior.proximo = auxProximo;
-            auxProximo.anterior = auxAnterior;
-
-            aux.anterior = null;
-            aux.proximo = null;
-
-            quantidadeEmEstoque--;
-        }
-
-        public produto EncontrarProduto(int codigo)
-        {
-            produto atual = primeiro;
-
-            while (atual != null)
-            {
-                if (atual.codigo == codigo)
-                {
-                    return atual;
-                }
-                atual = atual.proximo;
-            }
-            return null;
-        }
-
-        public void Salvar(string caminhoDoArquivo)
-        {
-
-            produto atual = primeiro;
-
-            StreamWriter estoqueG = new StreamWriter(caminhoDoArquivo);
-
-            estoqueG.WriteLine(quantidadeEmEstoque.ToString());
-
-            while (atual != null)
+            if (codigo != atual.codigo)
             {
                 estoqueG.WriteLine($"{atual.codigo};{atual.nome};{atual.preco};{atual.quantidade}");
-                atual = atual.proximo;
             }
-
-            estoqueG.Close();
-
+            atual = atual.proximo;
         }
 
-        public void SalvarExcluindo(string caminhoDoArquivo, int codigo)
-        {
+        estoqueG.Close();
 
-            produto atual = primeiro;
-
-            StreamWriter estoqueG = new StreamWriter(caminhoDoArquivo);
-
-            estoqueG.WriteLine((quantidadeEmEstoque - 1).ToString());
-
-            while (atual != null)
-            {
-                if (codigo != atual.codigo)
-                {
-                    estoqueG.WriteLine($"{atual.codigo};{atual.nome};{atual.preco};{atual.quantidade}");
-                }
-                atual = atual.proximo;
-            }
-
-            estoqueG.Close();
-
-        }
-
-        public void Ler(string caminhoDoArquivo)
-        {
-
-            StreamReader estoqueReader = new StreamReader(caminhoDoArquivo);
-
-            int N = int.Parse(estoqueReader.ReadLine());
-
-            for (int i = 0; i < N; i++)
-            {
-                string[] linha = estoqueReader.ReadLine().Split(';');
-                Adicionar(int.Parse(linha[0]), linha[1], double.Parse(linha[2]), int.Parse(linha[3]));
-            }
-
-            estoqueReader.Close();
-
-            quantidadeEmEstoque = N;
-
-        }
-
-        public void AtualizarTabela(System.Windows.Forms.ListView listView1)
-        {
-            listView1.Items.Clear();
-
-            produto atual = primeiro;
-
-            while (atual != null)
-            {
-                string temp = $"{atual.codigo}";
-                ListViewItem item = new ListViewItem(temp);
-
-                item.SubItems.Add($"{atual.nome}");
-                item.SubItems.Add($"R$ {atual.preco}");
-                item.SubItems.Add($"{atual.quantidade}");
-
-                listView1.Items.Add(item);
-                atual = atual.proximo;
-            }
-
-        }
-
-        public void Ordenar(string caminhoDoArquivo)
-        {
-            produto atual = primeiro;
-
-            string[] produtosSalvos = new string[quantidadeEmEstoque];
-            int contador = 0;
-
-            while (atual != null)
-            {
-                produtosSalvos[contador] = $"{atual.codigo};{atual.nome};{atual.preco};{atual.quantidade}";
-                contador++;
-                atual = atual.proximo;
-            }
-
-            for (int i = 0; i < produtosSalvos.Length; i++)
-            {
-                for (int j = i + 1; j < produtosSalvos.Length - 1; j++)
-                {
-                    string[] aux1 = produtosSalvos[i].Split(";");
-                    string[] aux2 = produtosSalvos[j].Split(";");
-
-
-                    if (int.Parse(aux1[0]) > int.Parse(aux2[0]))
-                    {
-                        string auxSwap = produtosSalvos[i];
-                        produtosSalvos[i] = produtosSalvos[j];
-                        produtosSalvos[j] = auxSwap;
-                    }
-                }
-            }
-
-            StreamWriter estoqueG = new StreamWriter(caminhoDoArquivo);
-
-            estoqueG.WriteLine(quantidadeEmEstoque.ToString());
-
-            for (int i = 0; i < produtosSalvos.Length; i++)
-            {
-                estoqueG.WriteLine(produtosSalvos[i]);
-            }
-
-            estoqueG.Close();
-        }
     }
+
+    public void Ler(string caminhoDoArquivo)
+    {
+
+        StreamReader estoqueReader = new StreamReader(caminhoDoArquivo);
+
+        int N = int.Parse(estoqueReader.ReadLine());
+
+        for (int i = 0; i < N; i++)
+        {
+            string[] linha = estoqueReader.ReadLine().Split(';');
+            Adicionar(int.Parse(linha[0]), linha[1], double.Parse(linha[2]), int.Parse(linha[3]));
+        }
+
+        estoqueReader.Close();
+
+        quantidadeEmEstoque = N;
+
+    }
+
+    public void AtualizarTabela(System.Windows.Forms.ListView listView1)
+    {
+        listView1.Items.Clear();
+
+        produto atual = primeiro;
+
+        while (atual != null)
+        {
+            string temp = $"{atual.codigo}";
+            ListViewItem item = new ListViewItem(temp);
+
+            item.SubItems.Add($"{atual.nome}");
+            item.SubItems.Add($"R$ {atual.preco}");
+            item.SubItems.Add($"{atual.quantidade}");
+
+            listView1.Items.Add(item);
+            atual = atual.proximo;
+        }
+
+    }
+
+    public void Ordenar(string caminhoDoArquivo)
+    {
+        produto atual = primeiro;
+
+        string[] produtosSalvos = new string[quantidadeEmEstoque];
+        int contador = 0;
+
+        while (atual != null)
+        {
+            produtosSalvos[contador] = $"{atual.codigo};{atual.nome};{atual.preco};{atual.quantidade}";
+            contador++;
+            atual = atual.proximo;
+        }
+
+        for (int i = 0; i < produtosSalvos.Length; i++)
+        {
+            for (int j = i + 1; j < produtosSalvos.Length; j++)
+            {
+                string[] aux1 = produtosSalvos[i].Split(";");
+                string[] aux2 = produtosSalvos[j].Split(";");
+
+
+                if (int.Parse(aux1[0]) > int.Parse(aux2[0]))
+                {
+                    string auxSwap = produtosSalvos[i];
+                    produtosSalvos[i] = produtosSalvos[j];
+                    produtosSalvos[j] = auxSwap;
+                }
+            }
+        }
+
+        StreamWriter estoqueG = new StreamWriter(caminhoDoArquivo);
+
+        estoqueG.WriteLine(quantidadeEmEstoque.ToString());
+
+        for (int i = 0; i < produtosSalvos.Length; i++)
+        {
+            estoqueG.WriteLine(produtosSalvos[i]);
+        }
+
+        estoqueG.Close();
+    }
+}
 
